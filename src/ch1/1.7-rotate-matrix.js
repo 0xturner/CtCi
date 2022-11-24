@@ -1,4 +1,6 @@
 /**
+ * Rotate 2d array (matrix) 90 degrees clockwise
+ *
  * time: O(n^2)
  * space: O(1)
  */
