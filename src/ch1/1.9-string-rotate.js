@@ -1,6 +1,6 @@
 /**
- * time: O(n)
- * space: O(1)
+ * time: ?
+ * space: ?
  */
 const isOneRotation = (s1, s2) => {
   if (s1.length !== s2.length) {
@@ -21,4 +21,22 @@ const isOneRotation = (s1, s2) => {
   return false;
 };
 
+/**
+ * s1 = xy
+ * s2 = yx
+ *
+ * yx is substring of s1s1(xyxy)
+ *
+ * time: O(n)
+ * space: O(n)
+ */
+const improvedIsOneRotation = (s1, s2) => {
+  if (!s1 || s1.length !== s2.length) {
+    return false;
+  }
+
+  return (s1 + s1).includes(s2);
+};
+
 console.log(isOneRotation("waterbottle", "erbottlewat"));
+console.log(improvedIsOneRotation("waterbottle", "erbottlewatX"));
