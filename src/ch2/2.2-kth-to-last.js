@@ -5,31 +5,29 @@ import { arrayToLinkedList } from "./helpers";
  * space: O(1)
  */
 const kthToLast = (head, k) => {
-  let count = 0;
+  let runner = head;
   let curr = head;
+  let runnerCount = 0;
 
-  const idx = countListLength(head) - k - 1;
+  // runner jumps ahead to the kth element
+  while (runnerCount < k) {
+    runnerCount++;
+    runner = runner.next;
+  }
 
-  while (curr) {
-    if (count === idx) {
-      return curr;
-    }
-    count++;
+  while (runner.next) {
+    runner = runner.next;
     curr = curr.next;
   }
+
+  return curr;
 };
 
-const countListLength = (head) => {
-  let count = 0;
-  let curr = head;
+// a -> b -> c -> d -> e -f>
+// kth 2 -> "2"
 
-  while (curr) {
-    count++;
-    curr = curr.next;
-  }
-  return count;
-};
+// TODO recursive
 
-const head = arrayToLinkedList(["a", "b", "c", "d", "e"]);
+const head = arrayToLinkedList(["a", "b", "c", "d", "e", "f"]);
 
 console.log(kthToLast(head, 2));
