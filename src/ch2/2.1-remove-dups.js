@@ -1,3 +1,5 @@
+import { arrayToLinkedList } from "./helpers";
+
 /**
  * assumes singly linked list is passed
  *
@@ -11,10 +13,10 @@ const removeDups = (head) => {
   let previous = null;
 
   while (curr) {
-    if (set.has(curr.data)) {
+    if (set.has(curr.value) && previous) {
       previous.next = curr.next;
     } else {
-      set.add(curr.data);
+      set.add(curr.value);
       previous = curr;
     }
     curr = curr.next;
@@ -36,7 +38,7 @@ const removeDupsSpaceEfficient = (head) => {
   while (curr) {
     let runner = curr;
     while (runner) {
-      if (runner.next?.data === curr.data) {
+      if (runner.next?.value === curr.value) {
         runner.next = runner.next.next;
       }
       runner = runner.next;
@@ -47,55 +49,7 @@ const removeDupsSpaceEfficient = (head) => {
   return head;
 };
 
-/**
- * assumes doubly linked list is passed
- *
- * time: O(n)
- * space: O(n)
- */
-const removeDupsDoublyLinked = (head) => {
-  const set = new Set(head.value);
+const head = arrayToLinkedList(["a", "b", "c", "b", "e"]);
 
-  let curr = head;
-
-  while (curr) {
-    if (set.has(curr.data)) {
-      curr.prev.next = curr.next;
-      if (curr.next) {
-        curr.next.prev = curr.prev;
-      }
-    } else {
-      set.add(curr.data);
-    }
-    curr = curr.next;
-  }
-
-  return head;
-};
-
-class Node {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
-    this.prev = null;
-  }
-}
-
-const one = new Node("a");
-const two = new Node("b");
-const three = new Node("c");
-const four = new Node("b");
-const five = new Node("a");
-
-one.next = two;
-two.next = three;
-two.prev = one;
-three.next = four;
-three.prev = two;
-four.next = five;
-four.prev = three;
-five.prev = four;
-
-console.log(removeDups(structuredClone(one)));
-console.log(removeDupsSpaceEfficient(structuredClone(one)));
-console.log(removeDupsDoublyLinked(structuredClone(one)));
+console.log(removeDups(structuredClone(head)));
+console.log(removeDupsSpaceEfficient(structuredClone(head)));
