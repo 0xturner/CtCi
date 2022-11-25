@@ -23,11 +23,25 @@ const kthToLast = (head, k) => {
   return curr;
 };
 
-// a -> b -> c -> d -> e -f>
-// kth 2 -> "2"
+const kthToLastRecursively = (node, k) => {
+  if (!node) {
+    return { node, idx: 0 };
+  }
 
-// TODO recursive
+  const newNode = kthToLastRecursively(node.next, k);
+  newNode.idx++;
+
+  if (newNode.idx === k + 1) {
+    return node;
+  }
+
+  return newNode;
+};
+
+// a -> b -> c -> d -> e -> f
+// kth 2 -> "d"
 
 const head = arrayToLinkedList(["a", "b", "c", "d", "e", "f"]);
 
 console.log(kthToLast(head, 2));
+console.log(kthToLastRecursively(head, 5));
