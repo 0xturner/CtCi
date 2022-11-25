@@ -23,6 +23,10 @@ const kthToLast = (head, k) => {
   return curr;
 };
 
+/**
+ * time: O(n)
+ * space: O(n)
+ */
 const kthToLastRecursively = (node, k) => {
   if (!node) {
     return { node, idx: 0 };
