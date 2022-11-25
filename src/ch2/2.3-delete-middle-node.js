@@ -1,5 +1,9 @@
 import { arrayToLinkedList } from "./helpers";
 
+/**
+ * time: O(1)
+ * space: O(1)
+ */
 const deleteMiddleNode = (node) => {
   if (!node || !node.next) {
     return false;
@@ -11,8 +15,8 @@ const deleteMiddleNode = (node) => {
 };
 
 const head = arrayToLinkedList(["a", "b", "c", "d", "e", "f"]);
-console.log("head: ", head);
 
+// @ts-ignore
 const cNode = head?.next?.next;
 deleteMiddleNode(cNode);
 console.log(head);
