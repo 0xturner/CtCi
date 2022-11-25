@@ -39,4 +39,4 @@ const improvedIsOneRotation = (s1, s2) => {
 };
 
 console.log(isOneRotation("waterbottle", "erbottlewat"));
-console.log(improvedIsOneRotation("waterbottle", "erbottlewatX"));
+console.log(improvedIsOneRotation("waterbottle", "erbottlewaX"));
