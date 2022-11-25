@@ -33,18 +33,17 @@ const removeDups = (head) => {
  * space: O(1)
  */
 const removeDupsSpaceEfficient = (head) => {
-  let p1 = head;
-  let p2 = head;
+  let curr = head;
 
-  while (p1) {
-    while (p2) {
-      if (p2.next?.data === p1.data) {
-        p2.next = p2.next.next;
+  while (curr) {
+    let runner = curr;
+    while (runner) {
+      if (runner.next?.data === curr.data) {
+        runner.next = runner.next.next;
       }
-      p2 = p2.next;
+      runner = runner.next;
     }
-    p1 = p1.next;
-    p2 = p1;
+    curr = curr.next;
   }
 
   return head;
